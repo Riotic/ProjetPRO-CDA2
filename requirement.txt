@@ -1,0 +1,4 @@
+nodejs - v19.6.1
+npm- v9.4.0
+librairies -> package-lock.json
+
