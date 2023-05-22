@@ -143,3 +143,16 @@ Plus grande ram nécessaire pour l'affichage de plus de données.
 
 
 
+Script pour création table utilisateur 
+CREATE TABLE utilisateur (
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(50),
+  prenom VARCHAR(50),
+  mot_de_passe VARCHAR(50)
+);
+
+INSERT INTO utilisateur (nom, prenom, mot_de_passe)
+VALUES ('Rio', 'CLE', 'testtest'),
+       ('Cho', 'TAH', 'tesate'),
+       ('Coco', 'CHANNEL', 'chacha'),
+       ('Pomme', 'DAMOUR', 'choto');

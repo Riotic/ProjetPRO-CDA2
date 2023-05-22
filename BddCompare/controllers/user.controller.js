@@ -1,8 +1,8 @@
 const { createUser } = require('../queries/user.queries');
 
-// exports.userNew = (req, res, next) => {
-//     res.render('layouts/signup', { error: null});
-// }
+exports.userNew = (req, res, next) => {
+    res.render('layouts/signup', { error: null});
+}
 
 exports.userCreate = async (req, res, next) => {
   try {
