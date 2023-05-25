@@ -1,96 +1,51 @@
-
+const functionMods = require('../private/functions/functionsMods');
 const express = require('express');
 const router = express.Router();
 
 const { Pool } = require('pg');
 const ejs = require('ejs');
 
+const schemaV4Routes = require('./schemas/schemaV4.routes');
+const schemaV5Routes = require('./schemas/schemaV5.routes');
 
-// attribution dynamique des pools
-function choosePool(version){
-  if(version == "localV5"){
-    // connection BDD local projet-pro-demo-1
-    let data = { 
-      user: 'postgres',
-      host: 'localhost',
-      database: 'projet_pro_demo_1',
-      password: 'root',
-      port: 5432, 
-    };
-    return data;
-  }else if(version == "localV4"){
-        // connection BDD local projet-pro-demo-2
-        let data = { 
-          user: 'postgres',
-          host: 'localhost',
-          database: 'projet_pro_demo_2',
-          password: 'root',
-          port: 5432, 
-        };
-    return data;
-  }
-
-}
-
-
-function customSortByRow(arr, row) {
-  const regex = /(\d+)/g;
-
-  return arr.sort((a, b) => {
-    const matchA = a[row].match(regex);
-    const matchB = b[row].match(regex);
-
-    if (matchA && matchB) {
-      const numA = parseInt(matchA[0]);
-      const numB = parseInt(matchB[0]);
-      return numA - numB;
-    } else if (matchA) {
-      return -1; // La chaîne de b est considérée comme plus grande
-    } else if (matchB) {
-      return 1; // La chaîne de a est considérée comme plus grande
-    } else {
-      return 0; // Les deux chaînes n'ont pas de chiffres, donc considérées égales
-    }
-  });
-}
-
-
+router.use('/', schemaV4Routes);
+router.use('/', schemaV5Routes);
 
 
 // ================================================================= Routes v4 ======================================================================================================================= //
 
 // -----------schémas ---------------- //
-router.post('/schemasV4', async (req, res) => {
-  const data = req.body;
-  const poolChoose = choosePool(data.bdd);
-  const poolDecided = new Pool({
-    user: poolChoose.user,
-    host: poolChoose.host,
-    database: poolChoose.database,
-    password: poolChoose.password,
-    port: poolChoose.port, // le port par défaut pour PostgreSQL est 5432
-  });
+// router.post('/schemasV4', async (req, res) => {
+//   const data = req.body;
+//   const poolChoose = functionMods.choosePool(data.bdd);
+//   const poolDecided = new Pool({
+//     user: poolChoose.user,
+//     host: poolChoose.host,
+//     database: poolChoose.database,
+//     password: poolChoose.password,
+//     port: poolChoose.port, // le port par défaut pour PostgreSQL est 5432
+//   });
 
-  const client = await poolDecided.connect();
-  try {
-    const result = await client.query("SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name NOT IN ('public', 'information_schema') ORDER BY schema_name ASC");
-    // console.log(res);
-    const schemata = result.rows;
-    // console.log(schemata);
-    poolDecided.end;
-    res.send(schemata);
+//   const client = await poolDecided.connect();
+//   try {
+//     const result = await client.query("SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name NOT IN ('public', 'information_schema') ORDER BY schema_name ASC");
+//     // console.log(res);
+//     const schemata = result.rows;
+//     // console.log(schemata);
+//     poolDecided.end;
+//     res.send(schemata);
 
-  } catch (err) {
-    console.error(err);
-    poolDecided.end;
-    res.send('Error ' + err);
-  }
-});
+//   } catch (err) {
+//     console.error(err);
+//     poolDecided.end;
+//     res.send('Error ' + err);
+//   }
+// });
 
 // ----------- tables ---------------- //
 router.post('/tablesV4', async (req, res) => {
   const data = req.body;
-  const poolChoose = choosePool(data.bdd);
+  const poolChoose = functionMods.choosePool(data.bdd);
   const poolDecided = new Pool({
     user: poolChoose.user,
     host: poolChoose.host,
@@ -126,7 +81,7 @@ router.post('/tablesV4', async (req, res) => {
 // ----------- données ---------------- //
 router.post('/donneeV4', async (req, res) => {
   const data = req.body;
-  const poolChoose = choosePool(data.bdd);
+  const poolChoose = functionMods.choosePool(data.bdd);
   const poolDecided = new Pool({
     user: poolChoose.user,
     host: poolChoose.host,
@@ -163,35 +118,35 @@ router.post('/donneeV4', async (req, res) => {
 
 
 // -----------schémas ---------------- //
-router.post('/schemasV5', async (req, res) => {
-  const data = req.body;
-  const poolChoose = choosePool(data.bdd);
-  const poolDecided = new Pool({
-    user: poolChoose.user,
-    host: poolChoose.host,
-    database: poolChoose.database,
-    password: poolChoose.password,
-    port: poolChoose.port, // le port par défaut pour PostgreSQL est 5432
-  });
+// router.post('/schemasV5', async (req, res) => {
+//   const data = req.body;
+//   const poolChoose = functionMods.choosePool(data.bdd);
+//   const poolDecided = new Pool({
+//     user: poolChoose.user,
+//     host: poolChoose.host,
+//     database: poolChoose.database,
+//     password: poolChoose.password,
+//     port: poolChoose.port, // le port par défaut pour PostgreSQL est 5432
+//   });
 
-  const client = await poolDecided.connect();
-  try {
-    const result = await client.query("SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name NOT IN ('public', 'information_schema') ORDER BY schema_name ASC");
-    // console.log(res);
-    const schemata = result.rows;
-    // console.log(schemata);
-    res.send(schemata);
-    poolChoose.end;
-  } catch (err) {
-    console.error(err);
-    res.send('Error ' + err);
-  }
-});
+//   const client = await poolDecided.connect();
+//   try {
+//     const result = await client.query("SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name NOT IN ('public', 'information_schema') ORDER BY schema_name ASC");
+//     // console.log(res);
+//     const schemata = result.rows;
+//     // console.log(schemata);
+//     res.send(schemata);
+//     poolChoose.end;
+//   } catch (err) {
+//     console.error(err);
+//     res.send('Error ' + err);
+//   }
+// });
 
 // ----------- tables ---------------- //
 router.post('/tablesV5', async (req, res) => {
   const data = req.body;
-  const poolChoose = choosePool(data.bdd);
+  const poolChoose = functionMods.choosePool(data.bdd);
   const poolDecided = new Pool({
     user: poolChoose.user,
     host: poolChoose.host,
@@ -227,7 +182,7 @@ router.post('/tablesV5', async (req, res) => {
 // ----------- données ---------------- //
 router.post('/donneeV5', async (req, res) => {
   const data = req.body;
-  const poolChoose = choosePool(data.bdd);
+  const poolChoose = functionMods.choosePool(data.bdd);
   const poolDecided = new Pool({
     user: poolChoose.user,
     host: poolChoose.host,
@@ -265,7 +220,7 @@ router.post('/donneeV5', async (req, res) => {
 //  données //
 router.post('/compareData', async (req, res) => {
   const data = req.body;
-  const poolChooseV4 = choosePool(data.bddV4);
+  const poolChooseV4 = functionMods.choosePool(data.bddV4);
   const poolDecidedV4 = new Pool({
     user: poolChooseV4.user,
     host: poolChooseV4.host,
@@ -275,7 +230,7 @@ router.post('/compareData', async (req, res) => {
   });
   const clientV4 = await poolDecidedV4.connect();
 
-  const poolChooseV5 = choosePool(data.bddV5);
+  const poolChooseV5 = functionMods.choosePool(data.bddV5);
   const poolDecidedV5 = new Pool({
     user: poolChooseV5.user,
     host: poolChooseV5.host,
@@ -300,7 +255,7 @@ router.post('/compareData', async (req, res) => {
     let tablesV5 = resultV5.rows;
     let forSort = nameCols[1];
 
-    tablesV5 = customSortByRow(tablesV5, forSort);
+    tablesV5 = functionMods.customSortByRow(tablesV5, forSort);
     // console.log(tablesV5[0]);
 
     const getColumnsV4 = await clientV4.query(`SELECT * FROM information_schema.columns WHERE table_schema = '${data.schemaV4}' AND table_name  = '${data.tableV4}';`);
@@ -309,7 +264,7 @@ router.post('/compareData', async (req, res) => {
     const tailleV4 = resultV4.rowCount;
     // console.log(resultV4.rowCount);
     let tablesV4 = resultV4.rows;
-    tablesV4 = customSortByRow(tablesV4, forSort);
+    tablesV4 = functionMods.customSortByRow(tablesV4, forSort);
     const onlyIdentiques = {};
 
     // console.log(tablesV4);
@@ -382,7 +337,7 @@ router.post('/compareData', async (req, res) => {
 // tables //
 router.post('/compareTables', async (req, res) => {
   const data = req.body;
-  const poolChooseV4 = choosePool(data.bddV4);
+  const poolChooseV4 = functionMods.choosePool(data.bddV4);
   const poolDecidedV4 = new Pool({
     user: poolChooseV4.user,
     host: poolChooseV4.host,
@@ -392,7 +347,7 @@ router.post('/compareTables', async (req, res) => {
   });
   const clientV4 = await poolDecidedV4.connect();
 
-  const poolChooseV5 = choosePool(data.bddV5);
+  const poolChooseV5 = functionMods.choosePool(data.bddV5);
   const poolDecidedV5 = new Pool({
     user: poolChooseV5.user,
     host: poolChooseV5.host,
@@ -443,7 +398,7 @@ router.post('/compareTables', async (req, res) => {
 //  données //
 router.post('/nbRows', async (req, res) => {
   const data = req.body;
-  const poolChooseV4 = choosePool(data.bddV4);
+  const poolChooseV4 = functionMods.choosePool(data.bddV4);
   const poolDecidedV4 = new Pool({
     user: poolChooseV4.user,
     host: poolChooseV4.host,
@@ -453,7 +408,7 @@ router.post('/nbRows', async (req, res) => {
   });
   const clientV4 = await poolDecidedV4.connect();
 
-  const poolChooseV5 = choosePool(data.bddV5);
+  const poolChooseV5 = functionMods.choosePool(data.bddV5);
   const poolDecidedV5 = new Pool({
     user: poolChooseV5.user,
     host: poolChooseV5.host,

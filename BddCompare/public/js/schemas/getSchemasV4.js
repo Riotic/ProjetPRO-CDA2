@@ -11,7 +11,7 @@ bddV4.addEventListener("click", () => {
 
     const allSchemaSelect = document.createElement("select");
     allSchemaSelect.id = "allSchemaV4";
-    allSchemaSelect.className = 'form-select w-60';
+    allSchemaSelect.className = 'form-select';
     const divSchemV4 = document.getElementById("schemaV4");
     divSchemV4.appendChild(allSchemaSelect);
 

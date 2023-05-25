@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const userRoutes = require('./user.routes');
-const authRoutes = require('./auth.routes');
+const userRoutes = require('./users/user.routes');
+const authRoutes = require('./users/auth.routes');
 const apiRoutes = require('./router');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../config/security.config');

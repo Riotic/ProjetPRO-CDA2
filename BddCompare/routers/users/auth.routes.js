@@ -1,4 +1,4 @@
-const {sessionNew, sessionCreate, sessionDelete } = require('../controllers/auth.controller');
+const {sessionNew, sessionCreate, sessionDelete } = require('../../controllers/auth.controller');
 const router = require('express').Router();
 
 

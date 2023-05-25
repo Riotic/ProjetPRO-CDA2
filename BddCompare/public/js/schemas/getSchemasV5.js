@@ -9,7 +9,7 @@ bddV5.addEventListener("click", () => {
   }else{
     const allSchemaSelect = document.createElement("select");
     allSchemaSelect.id = "allSchemaV5";
-    allSchemaSelect.className = 'form-select w-50';
+    allSchemaSelect.className = 'form-select';
     const divSchemV5 = document.getElementById("schemaV5");
     divSchemV5.appendChild(allSchemaSelect);
 

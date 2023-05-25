@@ -7,6 +7,7 @@ function compareData(){
   }else{
     let divDisplayComp = document.createElement('div');
     divDisplayComp.id = "displayComparaison";
+    divDisplayComp.className = "d-flex justify-content-around w-100"
     afficheComparaison.appendChild(divDisplayComp);
     const xhr = new XMLHttpRequest();
     const url = "/api/compareData";
@@ -39,12 +40,15 @@ function compareData(){
         sameData.className = "card.body";
 
         let titleV4 = document.createElement('h5');
+        titleV4.className = 'm-3';
         titleV4.innerText = `DonnéeV4 dif ${document.getElementById("startV4").value}-${Number(document.getElementById("startV4").value)+24}`;
 
         let titleV5 = document.createElement('h5');
+        titleV5.className = 'm-3';
         titleV5.innerText = `DonnéeV5 dif ${document.getElementById("startV5").value}-${Number(document.getElementById("startV5").value)+24}`;
 
         let donneeId = document.createElement('h5');
+        donneeId.className = 'm-3';
         donneeId.innerText = `Donnée identiques entre les deux tables`;
 
         let tableauDifV4 = document.createElement('table');

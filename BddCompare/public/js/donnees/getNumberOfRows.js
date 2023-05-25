@@ -34,12 +34,12 @@ function getNbOfRows(){
             const inputFromRowV4 = document.createElement("input");
             const inputFromRowV5 = document.createElement("input");
             inputFromRowV4.id = "startV4";
-            inputFromRowV4.className = "form-control";
+            inputFromRowV4.className = "form-control mb-3";
             inputFromRowV4.placeholder = "N°Ligne début visualisation";
             inputFromRowV4.type = "integer";
             inputFromRowV4.pattern = "[1-9][0-9]*";
             inputFromRowV5.id = "startV5";
-            inputFromRowV5.className = "form-control";
+            inputFromRowV5.className = "form-control mb-3";
             inputFromRowV5.placeholder = "N°Ligne début visualisation";
             inputFromRowV5.integer = "integer";
             inputFromRowV5.pattern = "[1-9][0-9]*";
