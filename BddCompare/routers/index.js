@@ -9,28 +9,11 @@ router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 router.use('/api', apiRoutes);
 
-// router.get('/', async (req, res) => {
-//     console.log(req.session.id);
-
-//     if(req.session.views){
-//       req.session.views += 1;
-//     }else{
-//       req.session.views = 1;
-//     }
-
-//     console.log(req.session);
-
-//     const data = {
-//         title: "bddCompare",
-//         h1: "Bonjour",
-//     };
-//     res.render('layouts/default', {data: data});
-// });
-
 router.get('/',  (req, res) => {
     res.render('layouts/index', {user: req.user});
 });
-// Route pour la page bddCompare
+
+// Route pour la page bddCompare protégé par ensureAuthenticated
 router.get('/bddCompare', ensureAuthenticated, async (req, res) => {
     // console.log(rows);
     const data = {
@@ -39,10 +22,5 @@ router.get('/bddCompare', ensureAuthenticated, async (req, res) => {
     };
     res.render('layouts/default', {data: data, user: "softia"});
 });
-
-// router.get('/protected', ensureAuthenticated, (req, res) => {
-//     res.render('protected');
-// });
-
 
 module.exports = router;
