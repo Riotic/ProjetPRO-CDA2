@@ -33,6 +33,28 @@ function choosePool(version){
 }
 
 
+function customSortByRow(arr, row) {
+  const regex = /(\d+)/g;
+
+  return arr.sort((a, b) => {
+    const matchA = a[row].match(regex);
+    const matchB = b[row].match(regex);
+
+    if (matchA && matchB) {
+      const numA = parseInt(matchA[0]);
+      const numB = parseInt(matchB[0]);
+      return numA - numB;
+    } else if (matchA) {
+      return -1; // La chaîne de b est considérée comme plus grande
+    } else if (matchB) {
+      return 1; // La chaîne de a est considérée comme plus grande
+    } else {
+      return 0; // Les deux chaînes n'ont pas de chiffres, donc considérées égales
+    }
+  });
+}
+
+
 
 
 // ================================================================= Routes v4 ======================================================================================================================= //
@@ -276,6 +298,9 @@ router.post('/compareData', async (req, res) => {
       nameCols.push(getColumnsV5.rows[i]["column_name"])
     };
     let tablesV5 = resultV5.rows;
+    let forSort = nameCols[1];
+
+    tablesV5 = customSortByRow(tablesV5, forSort);
     // console.log(tablesV5[0]);
 
     const getColumnsV4 = await clientV4.query(`SELECT * FROM information_schema.columns WHERE table_schema = '${data.schemaV4}' AND table_name  = '${data.tableV4}';`);
@@ -284,7 +309,7 @@ router.post('/compareData', async (req, res) => {
     const tailleV4 = resultV4.rowCount;
     // console.log(resultV4.rowCount);
     let tablesV4 = resultV4.rows;
-
+    tablesV4 = customSortByRow(tablesV4, forSort);
     const onlyIdentiques = {};
 
     // console.log(tablesV4);
@@ -301,21 +326,25 @@ router.post('/compareData', async (req, res) => {
     
         if (json1 === json2) {
           onlyIdentiques[key] = tablesV4[key];
+          // console.log("onlyIdentiques[key]", onlyIdentiques[key]);
         }
       }
     }
 
 
     for (const key in onlyIdentiques) {
+      // console.log(tablesV4, `display tablesV4 clés = ${key}`);
+      // console.log(tablesV5, `display tablesV5 clés = ${key}`);
       delete tablesV4[key];
       delete tablesV5[key];
     }
-
+    
     const difV4 = {};
     const difV5 = {};
     if(isBreaked = 1){
       for (let i=0; i <= 50; i++) {
         if(tablesV4[i]){ 
+
           difV4[i] = tablesV4[i];
           difV5[i] = tablesV5[i];
         }
