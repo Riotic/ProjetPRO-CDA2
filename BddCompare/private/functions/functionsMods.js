@@ -1,42 +1,42 @@
 // attribution dynamique des pools
 function choosePool(version){
-  if(version == "poemsV4-formation"){
-      // connection BDD poemsV4 formation Distante 	https://poems-formation.softia.ovh
+  if(version == "unkV4-formation"){
+      // connection BDD unkV4 formation Distante 	https://unk-formation.siteRio.ovh
     let data = { 
-      user: 'softia',
-      host: '192.168.10.55',
-      database: 'poems_pdt',
-      password: 'softia',
+      user: 'siteRio',
+      host: '192.168.10.30',
+      database: 'unk_pdt',
+      password: 'siteRio',
       port: 5432,
     };
     return data;
-  }else if(version == "poemsV4-test2"){
-    // connection BDD poemsV4 test Distante https://poems-test2.softia.ovh 
+  }else if(version == "unkV4-test2"){
+    // connection BDD unkV4 test Distante https://unk-test2.siteRio.ovh 
     let data = { 
-      user: 'softia',
-      host: '192.168.10.55',
-      database: 'postgres',
-      password: 'softia',
+      user: 'siteRio',
+      host: '192.168.10.30',
+      database: 'unkgres',
+      password: 'siteRio',
       port: 5432, 
     };
     return data;
-  }else if(version == "poemsV5-integration"){
-    // connection BDD poemsV5 Integration https://poems5-integration.softia.ovh/
+  }else if(version == "unkV5-integration"){
+    // connection BDD unkV5 Integration https://unk5-integration.siteRio.ovh/
     let data = { 
-      user: 'softia',
+      user: 'siteRio',
       host: '192.168.10.248',
-      database: 'poems-refonte',
-      password: 'softia',
+      database: 'unk-refonte',
+      password: 'siteRio',
       port: 5432, 
     };
     return data;
-  }else if(version == "poemsV5-test"){
-    // connection BDD poemsV5 Distante https://poems5-test.softia.ovh/
+  }else if(version == "unkV5-test"){
+    // connection BDD unkV5 Distante https://unk5-test.siteRio.ovh/
     let data = { 
-      user: 'softia',
+      user: 'siteRio',
       host: '192.168.10.249',
-      database: 'poems-refonte',
-      password: 'softia',
+      database: 'unk-refonte',
+      password: 'siteRio',
       port: 5432, 
     };
     return data;
