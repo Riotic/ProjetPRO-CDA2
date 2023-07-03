@@ -14,7 +14,11 @@ Url actuellement utilisé pour l'application : 192.168.10.177:3000
 
 Guide d'installation :  
 Installation de node js v19.6.1 - https://nodejs.org/en/download/current  
-Npm v 9.4.0  
+NodeJS et Npm v 9.4.0 - https://nodejs.org/fr/download
+Installation de postgresql v15 - https://www.postgresql.org/download/windows/
+
+Recommandations:
+GUI de gestion de base de donnée pour une autre interaction et meilleures récupérations des scripts
 
 Pour lancer l'application il vous faudra aprés avoir cloné ce repos, rentrer dans le dossier BddCompare avec la commande suivante :  
 ```

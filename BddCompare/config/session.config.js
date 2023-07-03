@@ -14,6 +14,7 @@ app.use(
         httpOnly: true,
         maxAge: 60*60*24*14*1000
       },
+      // lignes de connections à modifier selon votre pc
       store: new MongoStore({
         mongoUrl:'mongodb://rio:dossierPro@127.0.0.1:27017/renduPro',
         ttl: 60*60*24*14,
