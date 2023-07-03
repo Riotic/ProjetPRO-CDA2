@@ -109,6 +109,7 @@ router.post('/compareData', async (req, res) => {
       };
       poolDecidedV4.end;
       poolDecidedV5.end;
+      // console.log(allDatas);
       res.send(allDatas);
    
     } catch (err) {

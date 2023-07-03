@@ -3,10 +3,12 @@
 Node v19 et + installé.
 NPM 9.5 et + installé.
 Postgresql v15 et +.
-Mongodb v6.0.5
 
 Crée sous : 
 OS - Windows 11
+
+Url actuellement utilisé pour l'application : 192.168.10.177:3000
+
 
 ## Comparateur bdd pgsql / Easy Admin
 
@@ -89,16 +91,12 @@ Le bouton d'affichage et bouton de rafraîchissement est le même bouton.
 
 ![Screenshot](./presentationAppli/Section2.png)
 
-Possibilité de comparer les schémas différents entre les deux bases de données.  
-
-![Screenshot](./presentationAppli/Section2-2.png)
-
 ## 4- Récupération des tables 
 
 ![Screenshot](./presentationAppli/Section3.png)
  
 Select avec les tables en communs des deux schémas choisis. 
-Une fois une table choisi, !!!double cliqué!!! sur la table choisie pour afficher le nombre de lignes pour chacune des tables.
+Une fois une table choisi, cliquez sur afficher/cacher n° Lignes.
 
 ![Screenshot](./presentationAppli/Section3-2.png)
 
@@ -106,12 +104,12 @@ Une fois une table choisi, !!!double cliqué!!! sur la table choisie pour affich
 
 Pour afficher les données il faut d'abord insérer le N° de ligne de visualisation à partir duquel vous voulez visualiser la bdd.  Ce numéro doit aller de 1 jusqu'au maximum du nombre de lignes afficher juste au dessus de la ligne. (Ici 14019). 
 
-![Screenshot](./presentationAppli/Section4-a.png)
+![Screenshot](./presentationAppli/Section4.png)
 
 Une fois que vous avez réalisé cette tâche, vous pouvez afficher les données de la table choisie. L'application affiche les 25 premieres données, ordonnées par ordre croissant par rapport à la 2eme colonne, à partir du numéro entré dans la case "N Ligne début visualisation". 
 On y affiche que 25 pour le moment car la capacité de RAM demandée pour afficher plus de données est trop importante. 
 
-![Screenshot](./presentationAppli/Section4.png)
+![Screenshot](./presentationAppli/Section4-a.png)
 
 Le bloc bleu clair correspond au données de la "v5", le bloc gris correspond aux données de la "v4".
 
@@ -122,18 +120,9 @@ Elle reprendra les numéros de ligne de visualisation entré sur la section sup�
 
 ![Screenshot](./presentationAppli/Section5.png)
 
-Le bloc jaune correspond aux données différentes de la base de donnée V5, le bloc vert aux données identiques entre les deux bases de données, et le bloc bleu correspond aux données différentes de la base de donnée V4.
-
-Voici à quoi ressemble l'application dans son intégrité : 
+Possibilité de créer un excel de la comparaison désiré en cliquant sur le boutton "Créer un excel de la comparaison". 
 
 ![Screenshot](./presentationAppli/Section6.png)
-
-Voici un exemple de fonctionnalité sur un test prenant le cas ou il y a différence et similarités :  
-
-![Screenshot](./presentationAppli/Section7.png)
-
-
-
 
 ## En guise d'amélioration...  
 
@@ -143,16 +132,3 @@ Plus grande ram nécessaire pour l'affichage de plus de données.
 
 
 
-Script pour création table utilisateur 
-CREATE TABLE utilisateur (
-  id SERIAL PRIMARY KEY,
-  nom VARCHAR(50),
-  prenom VARCHAR(50),
-  mot_de_passe VARCHAR(50)
-);
-
-INSERT INTO utilisateur (nom, prenom, mot_de_passe)
-VALUES ('Rio', 'CLE', 'testtest'),
-       ('Cho', 'TAH', 'tesate'),
-       ('Coco', 'CHANNEL', 'chacha'),
-       ('Pomme', 'DAMOUR', 'choto');

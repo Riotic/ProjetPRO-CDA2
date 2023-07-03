@@ -1,13 +1,10 @@
 const bddV4 = document.getElementsByClassName("displayBddV4")[0];
 
-bddV4.addEventListener("click", () => {
-  let verifyExist = document.getElementById("allSchemaV4");
+console.log(keepBddNameV5);
 
-  if(verifyExist){
-    const test = document.getElementById("allSchemaV4");
-    test.remove();
+async function getSchemaV4(){
 
-  }else{
+  await getSchemaV5();
 
     const allSchemaSelect = document.createElement("select");
     allSchemaSelect.id = "allSchemaV4";
@@ -17,7 +14,7 @@ bddV4.addEventListener("click", () => {
 
     var xhr = new XMLHttpRequest(); // création d'un objet XMLHttpRequest
     const url = "/api/schemasV4";
-    const data = {bdd: document.getElementById("bdd-v4").value};
+    const data = {bdd: keepBddNameV4};
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function() {
@@ -50,6 +47,7 @@ bddV4.addEventListener("click", () => {
     console.log(jsonData);
     xhr.send(jsonData);
 
-  }
+  
+}
 
-})
+bddV4.addEventListener("click", getSchemaV4);

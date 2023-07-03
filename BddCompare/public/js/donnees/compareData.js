@@ -1,25 +1,55 @@
-function compareData(){
-  let verifyExist = document.getElementById("displayComparaison");
+async function compareData(){
+
+  // let verifyExist = document.getElementById("allSchemaV5");
+  let verifyExist = document.getElementById("block-bdd");
   if(verifyExist){
-    const test = document.getElementById("displayComparaison");
-    test.remove();
+    verifyExist.remove();
+  }
+
+
+  const test2 = document.getElementById("changeStep");
+  test2.className = "h-75 d-flex justify-content-center";
+
+  const chngImg2 = document.getElementById("stepImg");
+  chngImg2.src = "/img/component/Component5.png";
+
+  const div1Table = document.createElement("div");
+  div1Table.id = "block-bdd";
+  div1Table.className = " w-100 d-flex flex-column align-items-center justify-content-center";
+
+  const div1TableTitle = document.createElement("h4");
+  div1TableTitle.className = "mt-4";
+  div1TableTitle.innerText = "Comparaisons";
+
+  const createDivComparaisons = document.createElement("div");
+  createDivComparaisons.id = "afficheComparaison";
+  createDivComparaisons.className = "card-body d-flex flex-column m-3 justify-content-center align-items-center w-100";
+
+  const divToClean = document.getElementById("toClean");
+  divToClean.appendChild(div1Table);
+  div1Table.appendChild(div1TableTitle);
+  div1Table.appendChild(createDivComparaisons);
+//   let verifyExist = document.getElementById("displayComparaison");
+//   if(verifyExist){
+//     const test = document.getElementById("displayComparaison");
+//     test.remove();
   
-  }else{
+//   }else{
     let divDisplayComp = document.createElement('div');
     divDisplayComp.id = "displayComparaison";
     divDisplayComp.className = "d-flex justify-content-around w-100"
     afficheComparaison.appendChild(divDisplayComp);
     const xhr = new XMLHttpRequest();
     const url = "/api/compareData";
-    const data = {tableV4: document.getElementById("allTableComparable").value, schemaV4: document.getElementById("allSchemaV4").value, bddV4: document.getElementById("bdd-v4").value, tableV5: document.getElementById("allTableComparable").value, schemaV5: document.getElementById("allSchemaV5").value, bddV5: document.getElementById("bdd-v5").value, startV4: document.getElementById("startV4").value , startV5: document.getElementById("startV5").value };
+    const data = {tableV4: keepTableNameV4, schemaV4: keepSchemaNameV4, bddV4: keepBddNameV4, tableV5: keepTableNameV5, schemaV5: keepSchemaNameV5, bddV5: keepBddNameV5, startV4: keepStartV4 , startV5: keepStartV5 };
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = async function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var data = JSON.parse(this.responseText);
         var donnees = data;
   
-        console.log(donnees);
+        console.log(donnees, "ici on affiche données");
         // console.log(donnees["dataDifV4"]);
   
         let divContainTabV4 = document.createElement('div');
@@ -41,11 +71,11 @@ function compareData(){
 
         let titleV4 = document.createElement('h5');
         titleV4.className = 'm-3';
-        titleV4.innerText = `DonnéeV4 dif ${document.getElementById("startV4").value}-${Number(document.getElementById("startV4").value)+24}`;
+        titleV4.innerText = `DonnéeV4 dif ${keepStartV4}-${Number(keepStartV4)+24}`;
 
         let titleV5 = document.createElement('h5');
         titleV5.className = 'm-3';
-        titleV5.innerText = `DonnéeV5 dif ${document.getElementById("startV5").value}-${Number(document.getElementById("startV5").value)+24}`;
+        titleV5.innerText = `DonnéeV5 dif ${keepStartV5}-${Number(keepStartV5)+24}`;
 
         let donneeId = document.createElement('h5');
         donneeId.className = 'm-3';
@@ -53,6 +83,7 @@ function compareData(){
 
         let tableauDifV4 = document.createElement('table');
         tableauDifV4.className = "table table-info";
+        console.log(tableauDifV4);
 
         let tableauDifV5 = document.createElement('table');
         tableauDifV5.className = "table table-info";
@@ -74,7 +105,11 @@ function compareData(){
         divContainTabV5.appendChild(titleV5);
         divContainTabV5.appendChild(divDifV5);
         divDifV5.appendChild(tableauDifV5);
-  
+        let enTete = tableauDifV4.insertRow();
+        enTete.id = `firstRowV4`;
+        console.log(donnees["dataDifV4"], "repere donnée data dif v4");
+        console.log(enTete);
+        await delay(100);
         // console.log(Object.keys(donnees["dataDifV4"]).length);
         // console.log(donnees["dataDifV4"][0]);
         let z = 0;
@@ -82,6 +117,7 @@ function compareData(){
           if(z == 0){
             // console.log("test");
             let enTete = tableauDifV4.insertRow();
+            console.log(enTete);
             enTete.id = `firstRowV4`;
             for (const property in donnees["dataDifV4"][key]) {
               let cellToInsert = enTete.insertCell();
@@ -162,11 +198,11 @@ function compareData(){
     console.log(jsonData);
     // console.log(document.getElementById("allTableComparable").value);
     xhr.send(jsonData);
-  }
+//   }
 
 }
 
 
 
 
-document.getElementById("compareDatas").addEventListener("click", compareData);
+// document.getElementById("compareDatas").addEventListener("click", compareData);

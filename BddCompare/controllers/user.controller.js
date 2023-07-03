@@ -10,7 +10,7 @@ exports.userCreate = async (req, res, next) => {
     const user = await createUser(body);
     req.login(user, (err) => {
       if (err) { next(err) }
-      res.redirect('/');
+      res.redirect( '/');
     })
   } catch(e) {
     res.render('signup', { error: e.message });

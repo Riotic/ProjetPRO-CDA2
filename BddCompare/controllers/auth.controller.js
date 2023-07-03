@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 exports.sessionNew = (req, res, next) => {
-    res.render('layouts/signin', { error: null });
+    res.redirect('/');
   }
 
 exports.sessionCreate = (req, res, next) => {
@@ -9,7 +9,8 @@ exports.sessionCreate = (req, res, next) => {
       if (err) {
         next(err);
       } else if (!user) {
-        res.render('layouts/signin', { error: info.message })
+        const errorMessage = info.message;
+        res.redirect(`/?error=${errorMessage}`);
       } else {
         req.login(user, (err) => {
           if (err) {

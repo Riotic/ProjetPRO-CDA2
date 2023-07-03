@@ -1,135 +1,45 @@
-<main id="main" class="main">
+<main id="main" class="main d-flex flex-column align-items-center h-75 justify-content-around">
+  <div class="align-self-start ms-5">
+    <img id="stepArrow" src="/img/component/idle.png" alt="">
+  </div>
+  <div class="">
+    <img id="stepImg" src="/img/component/Component1.png" alt="">
+  </div>
+  <section class="h-75 w-75 d-flex justify-content-center" id="changeStep">
+    <div id="cleanForRenew1" class="d-flex flex-column justify-content-center align-items-center h-50" >
+      <div class="d-flex justify-content-between h-100">
+        <!---->
+            <div class="card w-100 h-100">
+              <div id="block-bdd" class="card-body d-flex flex-column align-content-center h-100" style="padding: 10px 50px 20px;" > 
+                <h4 class="mt-4 mb-4">Base de données</h4>
+                <div id="databasePoemsV5" class="d-flex justify-content-between mb-4" >
+                  <select id="bdd-v5" class=" form-select w-50 me-5">
+                    <option value="poemsV5-integration">V5 Integration - poems-refonte@192.168.10.248 </option>
+                    <option value="poemsV5-test">V5 Test - poems-refonte@192.168.10.249 </option>
+                    <!--<option value="localV5">Local V5 </option>-->
 
-    <section class="section">
-      <div >
-        <div class="d-flex w-100 justify-content-between">
-              <div class="card w-50 ">
-                <div id="block-bdd" class="card-body d-flex flex-column align-content-center " style="padding: 10px 50px 20px;" > 
-                  <h4 class="mt-4">Base de données</h4>
-                  <div id="databasePoemsV5" class="d-flex m-3 justify-content-between" >
-                    <select id="bdd-v5" class=" form-select w-50 me-5">
-                      <option value="localV5">Local V5 </option>
-                      <option value="poemsV5-integration">V5 Integration - fakeUrl@192.167.10.235 </option>
-                      <option value="poemsV5-test">V5 Test - fakeUrl@192.167.10.234 </option>
-                    </select>
-                    
-                    <select id="bdd-v4" class=" form-select w-50">
-                      <option value="localV4">Local V4 </option>
-                      <option value="poemsV4-formation">V4 Formation - postgres@192.167.10.52 </option>
-                      <option value="poemsV4-test2">V4 Test - postgres@192.167.10.54 </option>
-                      <option value="poemsV5-test">V5 Test - fakeUrl@192.167.10.234 </option>
-                    </select>
-                  </div>
-        
-                  <!-- <div id="databasePoemsV4" class="d-flex m-3 justify-content-between">
-                    
-                  </div> -->
-                  <button id="refreshSchemas" class="displayBddV5 displayBddV4 btn btn-primary w-50 align-content-center align-self-center">Afficher schémas des bdd</button>
-                </div>
-
-              </div>
-
-              <div class="card ms-3 w-50">
-                <div id="block-bdd" class="card-body" class="m-3" > 
-                  <h4 class="mt-4">Schémas</h4>
-                  <div id="schema" class="d-flex m-3 justify-content-between">
-
-                    <div id="containSchemaV5" class="d-flex flex-column m-3 justify-content-between">
-                      <div id="schemaV5" class="m-3">
-                      </div>
-                    </div>
-            
-            
-                    <div class="d-flex flex-column m-3 justify-content-center align-items-center">
-                      <!-- <button  id="compareSchemas" class="m-2  btn border border-primary w-75">comparaison de schémas</button>
-                      <button  id="hideCompareSchemas" class="m-2  btn border border-primary w-75">Cacher résultats</button> -->
-                      <button id="refreshTables2" class="displayTableV4 displayTableV5 m-2 w-75 btn btn-primary">Afficher tables</button>
-                      <div id="comparaisonStockSchemas"></div>
-                    </div>
-            
-                    <div id="containSchemaV4" class="d-flex flex-column m-3 justify-content-between">
-                      <div id="schemaV4" class="m-3">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-
-
-              <div class="card">
-                <div id="block-bdd" class="card-body m-3"  > 
-                  <h4 class="mt-4 ms-3">Tables en communs</h4>
-                  <div id="containMyTable" class="d-flex m-3 flex-column justify-content-between">
-
-                    <div id="onlyComparableTables" class="d-flex m-3 justify-content-evenly">
-                    </div>
-                                        <!--
-                    <div class="d-flex m-3 justify-content-evenly">
-                      <button  id="compareTables" class="ml-3 btn btn-primary">comparaison de tables</button>
-                      <button  id="refreshTables" class="ml-3 btn btn-primary">Cacher les résultats</button>
-                    </div>
-                                        -->
-                    <!--
-                    <div>
-                      <button  id="compareTables">comparaison de tables</button>
-                      <button  id="refreshTables">Cacher les résultats</button>
-                      <div id="comparaisonStockTables"></div>
-                    </div>
-                    -->
+                  </select>
                   
-                  </div>
+                  <select id="bdd-v4" class=" form-select w-50">
+                    <option value="poemsV4-formation">V4 Formation - poems_pdt@192.168.10.55 </option>
+                    <option value="poemsV4-test2">V4 Test - postgres@192.168.10.55 </option>
+                    <option value="poemsV5-test">V5 Test - poems-refonte@192.168.10.249 </option>
+                    <!--<option value="localV4">Local V4 </option>-->
+                  </select>
                 </div>
+
+                <button id="refreshSchemas" class="displayBddV5 displayBddV4 btn btn-primary w-50 align-content-center align-self-center">Afficher schémas des bdd</button>
               </div>
-        
-              <div class="card ">
-                <h4 class="ms-5 mt-3">Données</h4>
-                <div id="table" class="card-body d-flex m-3 justify-content-between">
-                  <div id="containTableV5" class="d-flex flex-column m-3 justify-content-between">
-                    <div id="tableV5">
-                    </div>
-                    <button id="displayDataV5" class="ml-3 btn btn-primary">Afficher/Rafraîchir données de la table V5</button>
-                  </div>
-          
-                  <div id="containTableV4" class="m-3">
-                    <div id="tableV4">
-                    </div>
-                    <button id="displayDataV4" class="ml-3 btn btn-primary">Afficher/Rafraîchir données de la table V4</button>
-                  </div>
-          
-                </div>
-              </div>
+
+            </div>
+
+        </div>
       </div>
 
 
-        <div class="card w-100 d-flex justify-content-center">
-          <h4 class="mt-4 ms-5">Affichage des données</h4>
-          <div id="donnee" class="card-body d-flex m-3 justify-content-between">
-            <div>
-              <div id="comparaisonStockDatas">
-              </div>
-            </div>
-          </div>
-        </div>
 
 
-        <div class="card w-100 d-flex flex-column align-items-center justify-content-center">
-          <h4 class="mt-4">Comparaisons</h4>
-          <div id="afficheComparaison" class="card-body d-flex flex-column m-3 justify-content-center align-items-center w-100">
-
-            <div id="buttonToDisplay" class="d-flex m-3 p-3 justify-content-between w-50">
-              <button  id="compareDatas" class="btn btn-primary w-50 m-2">Afficher/Cacher Comparaison de données</button>
-              <button  id="excelMaker" class="btn btn-primary w-50 m-2">Créer un excel de la comparaison</button>
-            </div>
-    
-    
-          </div>
-        </div>
-
-
-
-
-    </section>
+  </section>
 
     <%- include('scripts') %>
 
