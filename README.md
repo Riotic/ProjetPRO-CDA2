@@ -16,9 +16,22 @@ Guide d'installation :
 Installation de node js v19.6.1 - https://nodejs.org/en/download/current  
 NodeJS et Npm v 9.4.0 - https://nodejs.org/fr/download
 Installation de postgresql v15 - https://www.postgresql.org/download/windows/
+Installation de MongoDB Compassa - https://www.mongodb.com/docs/manual/installation/
+Installation de Mongosh - https://www.mongodb.com/docs/mongodb-shell/
 
 Recommandations:
 GUI de gestion de base de donnée pour une autre interaction et meilleures récupérations des scripts
+
+Pour pouvoir avoir deux bases de données sur laquelle travaillé une fois que vous avez créer un utilisateur sur votre pgsql, vous pouvez créer deux nouvelle bases de données avec les commandes :  
+
+Au prèalable:
+psql -U postgres  
+CREATE database projet_pro_demo_1  
+CREATE database projet_pro_demo_2  
+\q   
+
+psql -U postgres -d projet_pro_demo_1 -a -f .\dump-projet_pro_demo_1-202307031104.sql
+psql -U postgres -d projet_pro_demo_2 -a -f .\dump-projet_pro_demo_2-202307031106.sql
 
 Pour lancer l'application il vous faudra aprés avoir cloné ce repos, rentrer dans le dossier BddCompare avec la commande suivante :  
 ```
