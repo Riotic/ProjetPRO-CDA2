@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const User = require('./database/models/user.model');
+
 const router = require('./routers');
 const app = express();
 exports.app = app;

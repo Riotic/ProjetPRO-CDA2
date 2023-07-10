@@ -8,7 +8,7 @@ const ejs = require('ejs');
 // -----------schémas ---------------- //
 router.post('/schemasV5', async (req, res) => {
     const data = req.body;
-    const poolChoose = functionMods.choosePool(data.bdd);
+    const poolChoose = await functionMods.getDataByName(data.bdd);
     const poolDecided = new Pool({
       user: poolChoose.user,
       host: poolChoose.host,

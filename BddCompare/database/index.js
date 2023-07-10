@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// lignes de connections à modifier selon votre pc
-mongoose.connect('mongodb://rio:dossierPro@127.0.0.1:27017/renduPro', {
+
+mongoose.connect('mongodb://softia:softia@192.168.10.133:27017/ezAdmin', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })

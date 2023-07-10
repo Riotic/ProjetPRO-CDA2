@@ -1,5 +1,25 @@
 const elemToClick = document.getElementById("stepArrow");
 
+
+// Fonction pour récupérer les datas via une requête AJAX
+function getDataList() {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/datas', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            const dataString = JSON.parse(xhr.responseText);
+            resolve(dataString);
+          } else {
+            reject(new Error('Une erreur s\'est produite lors de la récupération des datas.'));
+          }
+        }
+      };
+      xhr.send();
+    });
+}
+
 async function refreshThis(){
     let test = document.getElementById("stepArrow");
     let test2 = document.getElementById("stepImg");
@@ -37,22 +57,35 @@ async function refreshThis(){
         div4Div1.id = "databasePoemsV5";
         div4Div1.className = "d-flex justify-content-between mb-4";
 
-        const div4Div1Select1 = document.createElement("select");
-        div4Div1Select1.id = "bdd-v5";
-        div4Div1Select1.className = " form-select w-50 me-5";
+        const dataString = await getDataList();
+        console.log(dataString, "recup data");
+        const div4Div1Select1 = document.createElement('select');
+        div4Div1Select1.classList.add('form-select');
+        div4Div1Select1.classList.add('w-50');
+        div4Div1Select1.classList.add('me-5');
+        div4Div1Select1.id = 'bdd-v5';
 
-        div4Div1Select1.innerHTML = `<option value="poemsV5-integration">V5 Integration - poems-refonte@192.168.10.248 </option>
-        <option value="poemsV5-test">V5 Test - poems-refonte@192.168.10.249 </option>
-        <option value="localV5">Local V5 </option>`;
+                // Ajoutez les options des datas
+        dataString.forEach((data) => {
+            const option = document.createElement('option');
+            option.value = data.name;
+            option.textContent = data.name;
+            div4Div1Select1.appendChild(option);
+        });
 
-        const div4Div1Select2 = document.createElement("select");
-        div4Div1Select2.id = "bdd-v4";
-        div4Div1Select2.className = " form-select w-50";
+        const div4Div1Select2 = document.createElement('select');
+        div4Div1Select2.classList.add('form-select');
+        div4Div1Select2.classList.add('w-50');
+        div4Div1Select2.classList.add('me-5');
+        div4Div1Select2.id = 'bdd-v4';
 
-        div4Div1Select2.innerHTML = `<option value="poemsV4-formation">V4 Formation - poems_pdt@192.168.10.55 </option>
-        <option value="poemsV4-formation">V4 Formation - poems_pdt@192.168.10.55 </option>
-        <option value="poemsV5-test">V5 Test - poems-refonte@192.168.10.249 </option>
-        <option value="localV4">Local V4 </option>`;
+                // Ajoutez les options des dataString
+        dataString.forEach((data) => {
+            const option = document.createElement('option');
+            option.value = data.name;
+            option.textContent = data.name;
+            div4Div1Select2.appendChild(option);
+        });
 
         const div4Button = document.createElement("button");
         div4Button.id = "refreshSchemas";

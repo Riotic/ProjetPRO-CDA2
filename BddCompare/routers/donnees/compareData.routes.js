@@ -8,7 +8,7 @@ const ejs = require('ejs');
 //  Comparaison données //
 router.post('/compareData', async (req, res) => {
     const data = req.body;
-    const poolChooseV4 = functionMods.choosePool(data.bddV4);
+    const poolChooseV4 = await functionMods.getDataByName(data.bddV4);
     const poolDecidedV4 = new Pool({
       user: poolChooseV4.user,
       host: poolChooseV4.host,
@@ -18,7 +18,7 @@ router.post('/compareData', async (req, res) => {
     });
     const clientV4 = await poolDecidedV4.connect();
   
-    const poolChooseV5 = functionMods.choosePool(data.bddV5);
+    const poolChooseV5 = await functionMods.getDataByName(data.bddV5);
     const poolDecidedV5 = new Pool({
       user: poolChooseV5.user,
       host: poolChooseV5.host,

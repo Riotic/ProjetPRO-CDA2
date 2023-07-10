@@ -36,7 +36,6 @@ function getNbOfRows() {
       if (this.readyState === 4 && this.status === 200) {
         var data = JSON.parse(this.responseText);
         var donnees = data;
-        console.log(donnees, "get nmber of rows");
         const pV4 = document.createElement("p");
         pV4.innerText = `${data["tailleRowV4"]} Lignes`;
         pV4.id = "paraV4";
@@ -77,7 +76,7 @@ function getNbOfRows() {
     };
 
     const jsonData = JSON.stringify(data);
-    console.log(jsonData, "get nmber of rows");
+
     xhr.send(jsonData);
   }
 }

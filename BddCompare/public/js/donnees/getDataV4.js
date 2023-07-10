@@ -11,9 +11,6 @@ async function displayDaDataV4(){
       if (xhr.readyState === 4 && xhr.status === 200) {
         var data = JSON.parse(this.responseText);
         var donnees = data;
-        console.log(donnees);
-        console.log(donnees.length);
-        console.log(donnees[0]);
 
         let divForTitleAndThead = document.createElement('div');
         divForTitleAndThead.className = "d-flex flex-column";
@@ -95,7 +92,7 @@ async function displayDaDataV4(){
       }
     };
     const jsonData = JSON.stringify(data);
-    console.log(jsonData);
+
     xhr.send(jsonData);
 
     let whereToCraft = document.getElementById("block-bdd");

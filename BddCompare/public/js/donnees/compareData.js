@@ -49,25 +49,31 @@ async function compareData(){
         var data = JSON.parse(this.responseText);
         var donnees = data;
   
-        console.log(donnees, "ici on affiche données");
-        // console.log(donnees["dataDifV4"]);
-  
+        let changeDaStep = document.getElementById("changeStep");
+        changeDaStep.className = "h-75 w-75 d-flex justify-content-center";
+        
         let divContainTabV4 = document.createElement('div');
         divContainTabV4.className = "card";
+        divContainTabV4.style.overflow = "auto";
         let divContainTabId = document.createElement('div');
         divContainTabId.className = "card";
+        divContainTabId.style.overflow = "auto";
         let divContainTabV5 = document.createElement('div');
         divContainTabV5.className = "card";
+        divContainTabV5.style.overflow = "auto";
 
         let divDifV4 = document.createElement('div');
         let divDifV5 = document.createElement('div');
         let sameData = document.createElement('div');
         divDifV4.id = "dif-v4";
         divDifV4.className = "card.body";
+        // divDifV4.style.overflow = "auto";
         divDifV5.id = "dif-v5";
         divDifV5.className = "card.body";
+        // divDifV5.style.overflow = "auto";
         sameData.id = "sameData";
         sameData.className = "card.body";
+        // sameData.style.overflow = "auto";
 
         let titleV4 = document.createElement('h5');
         titleV4.className = 'm-3';
@@ -83,7 +89,6 @@ async function compareData(){
 
         let tableauDifV4 = document.createElement('table');
         tableauDifV4.className = "table table-info";
-        console.log(tableauDifV4);
 
         let tableauDifV5 = document.createElement('table');
         tableauDifV5.className = "table table-info";
@@ -107,17 +112,14 @@ async function compareData(){
         divDifV5.appendChild(tableauDifV5);
         let enTete = tableauDifV4.insertRow();
         enTete.id = `firstRowV4`;
-        console.log(donnees["dataDifV4"], "repere donnée data dif v4");
-        console.log(enTete);
+
         await delay(100);
-        // console.log(Object.keys(donnees["dataDifV4"]).length);
-        // console.log(donnees["dataDifV4"][0]);
+
         let z = 0;
         for(let key in donnees["dataDifV4"]){
           if(z == 0){
-            // console.log("test");
+
             let enTete = tableauDifV4.insertRow();
-            console.log(enTete);
             enTete.id = `firstRowV4`;
             for (const property in donnees["dataDifV4"][key]) {
               let cellToInsert = enTete.insertCell();
@@ -141,7 +143,6 @@ async function compareData(){
         z = 0;
         for(let key in donnees["dataIdentique"]){
           if(z == 0){
-            // console.log("test");
             let enTete = tableauSameData.insertRow();
             enTete.id = `firstRowSame`;
             for (const property in donnees["dataIdentique"][key]) {
@@ -166,7 +167,6 @@ async function compareData(){
         z = 0;
         for(let key in donnees["dataDifV5"]){
           if(z == 0){
-            // console.log("test");
             let enTete = tableauDifV5.insertRow();
             enTete.id = `firstRowV5`;
             for (const property in donnees["dataDifV5"][key]) {
@@ -195,8 +195,6 @@ async function compareData(){
       
     };
     const jsonData = JSON.stringify(data);
-    console.log(jsonData);
-    // console.log(document.getElementById("allTableComparable").value);
     xhr.send(jsonData);
 //   }
 

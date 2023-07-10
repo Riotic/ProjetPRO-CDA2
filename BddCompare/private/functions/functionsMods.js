@@ -1,70 +1,24 @@
+// const Data = require('../database/models/connectionString.models');
+const Data = require('../../database/models/connectionString.models');
+
 // attribution dynamique des pools
-function choosePool(version){
-  if(version == "unkV4-formation"){
-      // connection BDD unkV4 formation Distante 	https://unk-formation.siteRio.ovh
-    let data = { 
-      user: 'siteRio',
-      host: '192.168.10.30',
-      database: 'unk_pdt',
-      password: 'siteRio',
-      port: 5432,
-    };
-    return data;
-  }else if(version == "unkV4-test2"){
-    // connection BDD unkV4 test Distante https://unk-test2.siteRio.ovh 
-    let data = { 
-      user: 'siteRio',
-      host: '192.168.10.30',
-      database: 'unkgres',
-      password: 'siteRio',
-      port: 5432, 
-    };
-    return data;
-  }else if(version == "unkV5-integration"){
-    // connection BDD unkV5 Integration https://unk5-integration.siteRio.ovh/
-    let data = { 
-      user: 'siteRio',
-      host: '192.168.10.248',
-      database: 'unk-refonte',
-      password: 'siteRio',
-      port: 5432, 
-    };
-    return data;
-  }else if(version == "unkV5-test"){
-    // connection BDD unkV5 Distante https://unk5-test.siteRio.ovh/
-    let data = { 
-      user: 'siteRio',
-      host: '192.168.10.249',
-      database: 'unk-refonte',
-      password: 'siteRio',
-      port: 5432, 
-    };
-    return data;
-  }else if(version == "localV5"){
-    // connection BDD local projet-pro-demo-1
-    let data = { 
-      user: 'postgres',
-      host: 'localhost',
-      database: 'projet_pro_demo_1',
-      password: 'root',
-      port: 5432, 
-    };
-    return data;
-  }else if(version == "localV4"){
-    // connection BDD local projet-pro-demo-2
-    let data = { 
-      user: 'postgres',
-      host: 'localhost',
-      database: 'projet_pro_demo_2',
-      password: 'root',
-      port: 5432, 
-    };
-    return data;
+async function getDataByName(dataName) {
+  try {
+    const data = await Data.findByDataName(dataName);
+    if (data) {
+      const jsonData = data.toObject();
+      delete jsonData._id;
+      delete jsonData.__v;
+      return jsonData;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Une erreur s\'est produite lors de la recherche de la donnée :', error);
+    return null;
   }
-  
 }
-  
-  
+
 function customSortByRow(arr, row) {
     const regex = /(\d+)/g;
   
@@ -87,7 +41,9 @@ function customSortByRow(arr, row) {
 }
   
 
+
+
 module.exports = {
-    choosePool: choosePool,
+    getDataByName: getDataByName,
     customSortByRow: customSortByRow,
 };
