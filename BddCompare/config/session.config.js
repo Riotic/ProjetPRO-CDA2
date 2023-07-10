@@ -15,7 +15,7 @@ app.use(
         maxAge: 60*60*24*14*1000
       },
       store: new MongoStore({
-        mongoUrl:'mongodb://softia:softia@192.168.10.133:27017/ezAdmin',
+        mongoUrl:'mongodb://rio:dossierPro@127.0.0.1:27017/renduPro',
         ttl: 60*60*24*14,
       }),
   
