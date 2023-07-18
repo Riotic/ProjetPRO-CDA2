@@ -1,6 +1,6 @@
+// declaring async function so that we can wait the response from all servers in order to catch data
 async function compareData(){
 
-  // let verifyExist = document.getElementById("allSchemaV5");
   let verifyExist = document.getElementById("block-bdd");
   if(verifyExist){
     verifyExist.remove();
@@ -29,12 +29,7 @@ async function compareData(){
   divToClean.appendChild(div1Table);
   div1Table.appendChild(div1TableTitle);
   div1Table.appendChild(createDivComparaisons);
-//   let verifyExist = document.getElementById("displayComparaison");
-//   if(verifyExist){
-//     const test = document.getElementById("displayComparaison");
-//     test.remove();
-  
-//   }else{
+
     let divDisplayComp = document.createElement('div');
     divDisplayComp.id = "displayComparaison";
     divDisplayComp.className = "d-flex justify-content-around w-100"
@@ -67,13 +62,13 @@ async function compareData(){
         let sameData = document.createElement('div');
         divDifV4.id = "dif-v4";
         divDifV4.className = "card.body";
-        // divDifV4.style.overflow = "auto";
+
         divDifV5.id = "dif-v5";
         divDifV5.className = "card.body";
-        // divDifV5.style.overflow = "auto";
+
         sameData.id = "sameData";
         sameData.className = "card.body";
-        // sameData.style.overflow = "auto";
+
 
         let titleV4 = document.createElement('h5');
         titleV4.className = 'm-3';
@@ -196,11 +191,8 @@ async function compareData(){
     };
     const jsonData = JSON.stringify(data);
     xhr.send(jsonData);
-//   }
+
 
 }
 
 
-
-
-// document.getElementById("compareDatas").addEventListener("click", compareData);
