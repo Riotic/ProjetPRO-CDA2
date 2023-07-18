@@ -1,7 +1,6 @@
-// const Data = require('../database/models/connectionString.models');
 const Data = require('../../database/models/connectionString.models');
 
-// attribution dynamique des pools
+// Dynamic attribution of pools
 async function getDataByName(dataName) {
   try {
     const data = await Data.findByDataName(dataName);
@@ -19,6 +18,7 @@ async function getDataByName(dataName) {
   }
 }
 
+// Function to get another order that is not ascii when sorting a array. Takes a array and row to determine what to sort
 function customSortByRow(arr, row) {
     const regex = /(\d+)/g;
   
@@ -31,17 +31,14 @@ function customSortByRow(arr, row) {
         const numB = parseInt(matchB[0]);
         return numA - numB;
       } else if (matchA) {
-        return -1; // La chaîne de b est considérée comme plus grande
+        return -1; // B is greater sorting it after in the arr
       } else if (matchB) {
-        return 1; // La chaîne de a est considérée comme plus grande
+        return 1; // A is greater sorting it after in the arr
       } else {
-        return 0; // Les deux chaînes n'ont pas de chiffres, donc considérées égales
+        return 0; // Both are equals, not doing anything
       }
     });
 }
-  
-
-
 
 module.exports = {
     getDataByName: getDataByName,

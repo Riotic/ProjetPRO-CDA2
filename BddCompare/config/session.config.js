@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { app } = require('../app');
 
 app.use(
-  // setup token de session
+  // setup token 
     session({
       secret: 'renduPro',
       resave: false,

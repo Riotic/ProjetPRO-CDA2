@@ -19,9 +19,6 @@ function compareData(){
           var data = JSON.parse(this.responseText);
           var donnees = data;
     
-          console.log(donnees);
-          // console.log(donnees["dataDifV4"]);
-    
           let divContainTabV4 = document.createElement('div');
           divContainTabV4.className = "card";
           let divContainTabId = document.createElement('div');
@@ -75,12 +72,9 @@ function compareData(){
           divContainTabV5.appendChild(divDifV5);
           divDifV5.appendChild(tableauDifV5);
     
-          // console.log(Object.keys(donnees["dataDifV4"]).length);
-          // console.log(donnees["dataDifV4"][0]);
           let z = 0;
           for(let key in donnees["dataDifV4"]){
             if(z == 0){
-              // console.log("test");
               let enTete = tableauDifV4.insertRow();
               enTete.id = `firstRowV4`;
               for (const property in donnees["dataDifV4"][key]) {
@@ -105,7 +99,6 @@ function compareData(){
           z = 0;
           for(let key in donnees["dataIdentique"]){
             if(z == 0){
-              // console.log("test");
               let enTete = tableauSameData.insertRow();
               enTete.id = `firstRowSame`;
               for (const property in donnees["dataIdentique"][key]) {
@@ -130,7 +123,7 @@ function compareData(){
           z = 0;
           for(let key in donnees["dataDifV5"]){
             if(z == 0){
-              // console.log("test");
+
               let enTete = tableauDifV5.insertRow();
               enTete.id = `firstRowV5`;
               for (const property in donnees["dataDifV5"][key]) {
@@ -160,7 +153,6 @@ function compareData(){
       };
       const jsonData = JSON.stringify(data);
       console.log(jsonData);
-      // console.log(document.getElementById("allTableComparable").value);
       xhr.send(jsonData);
     }
   

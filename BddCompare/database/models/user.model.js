@@ -8,7 +8,7 @@ const userSchema = schema({
         password: { type: String, required: true },
     },
     username: String
-})
+});
 
 userSchema.statics.hashPassword = async (password) => {
     try{
@@ -17,11 +17,11 @@ userSchema.statics.hashPassword = async (password) => {
     }catch(e){
         throw e
     }
-}
+};
 
 userSchema.methods.comparePassword = function(password) {
     return bcrypt.compare(password, this.local.password);
-}
+};
 
 
 const User = mongoose.model('user', userSchema);

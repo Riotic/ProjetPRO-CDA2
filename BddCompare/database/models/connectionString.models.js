@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// Définition du schéma
 const Schema = mongoose.Schema;
+
 const dataSchema = new Schema({
   name: {
     type: String,
@@ -29,15 +29,15 @@ const dataSchema = new Schema({
   }
 });
 
-// Définition de l'index composé sur host, database, password et port (uniqueness)
+// Unique index define on host, database, password and port simultaneously (uniqueness)
 dataSchema.index({ name: 1, host: 1, database: 1, password: 1, port: 1 }, { unique: true });
 
-// Méthode statique pour trouver une donnée par son nom
+// Static method to find data by his name
 dataSchema.statics.findByDataName = function (dataName) {
   return this.findOne({ name: dataName }).exec();
 };
 
-// Création du modèle
+// Model creation
 const Data = mongoose.model('Data', dataSchema);
 
 module.exports = Data;
