@@ -19,7 +19,7 @@ Installation de postgresql v15 - https://www.postgresql.org/download/windows/
 Installation de MongoDB Compassa - https://www.mongodb.com/docs/manual/installation/
 Installation de Mongosh - https://www.mongodb.com/docs/mongodb-shell/
 
-Recommandations:
+Présentation:
 GUI de gestion de base de donnée pour une autre interaction et meilleures récupérations des scripts
 
 Pour pouvoir avoir deux bases de données sur laquelle travaillé une fois que vous avez créer un utilisateur sur votre pgsql, vous pouvez créer deux nouvelle bases de données avec les commandes :  
