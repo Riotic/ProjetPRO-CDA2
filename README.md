@@ -16,8 +16,11 @@ NodeJS et Npm v 9.4.0 - https://nodejs.org/fr/download
 Installation de postgresql v15 - https://www.postgresql.org/download/windows/  
 Installation de MongoDB Compassa - https://www.mongodb.com/docs/manual/installation/  
 Installation de Mongosh - https://www.mongodb.com/docs/mongodb-shell/  
+  
 Après l'installation de mongosh il sera important de créer une collection renduPro et de créer un utilisateur qui a les droits readWrite sur renduPro avec le nom "rio" et l mdp : "dossierPro". 
-Si vous désirez le faire autrement il faudra changer les lignes de connections dans les configs. ("mongoUrl")
+Si vous désirez le faire autrement il faudra changer les lignes de connections dans les configs. ("mongoUrl")  
+
+![Screenshot](./presentationAppli/exemplMongo.png)  
 
 Présentation:
 GUI de gestion de base de donnée pour une autre interaction et meilleures récupérations des scripts
