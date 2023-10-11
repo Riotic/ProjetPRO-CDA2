@@ -7,8 +7,6 @@ Postgresql v15 et +.
 Crée sous : 
 OS - Windows 11
 
-Url actuellement utilisé pour l'application : 192.168.10.177:3000
-
 
 ## Comparateur bdd pgsql / Easy Admin
 
