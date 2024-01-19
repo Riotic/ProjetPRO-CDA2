@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="h-100 w-100">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>BddCompare</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+    <%- include('../partials/links') %>
+
+
+  </head>
+  <body class="toggle-sidebar h-100 w-100">
+    <!-- Utilisez la balise EJS include pour inclure le layout de l'en-tête -->
+    <%- include('../partials/header') %>
+    <!-- Utilisez la balise EJS include pour inclure le contenu de chaque page -->
+    
+    <div class="container">
+        <h1 class="mt-5 white-h1">Liste des lignes de connections à des bases de données</h1>
+    
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-danger" role="alert">
+            <%= error %>
+          </div>
+        <% } else if (data.length === 0) { %>
+          <p>Aucune donnée trouvée.</p>
+        <% } else { %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>User</th>
+                <th>Host</th>
+                <th>Database</th>
+                <th>Password</th>
+                <th>Port</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach((item) => { %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.user %></td>
+                    <td><%= item.host %></td>
+                    <td><%= item.database %></td>
+                    <td>******</td>
+                    <td><%= item.port %></td>
+                    <td>
+                        <a href="/data/edit/<%= item._id %>" class="btn btn-primary btn-sm">Modifier</a>
+                        <form action="/data/delete/<%= item._id %>" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+    
+        <a href="/data/create" class="btn btn-success">Créer une nouvelle ligne de connection</a>
+    </div>
+
+    <%- include('../partials/scriptsBotstr') %>
+
+    <!-- Utilisez la balise EJS include pour inclure le layout du pied de page -->
+    <%- include('../partials/footer') %>
+  </body>
+</html>
